@@ -10,7 +10,7 @@ SOURCE_HASH=$(shell sha256sum $(NAME).pas | grep -o '^[0-9a-fA-F]*')
 
 release:
 	@rm -rf ./bin && mkdir -p ./bin
-	@export BK_DATE="$(BK_DATE)" && \
+	@export LOCAL_DATE="$(LOCAL_DATE)" && \
 	export SOURCE_HASH="$(SOURCE_HASH)" && \
 		$(FPC) $(RELEASE) ./$(NAME).pas -o./bin/$(BIN) | tr -s '\n' && \
 		echo '--------------------------------------------------' && \
@@ -18,7 +18,7 @@ release:
 
 debug:
 	@rm -rf ./bin && mkdir -p ./bin
-	@export BK_DATE="$(BK_DATE)" && \
+	@export LOCAL_DATE="$(LOCAL_DATE)" && \
 		$(FPC) $(DEBUG) ./$(NAME).pas -o./bin/$(BIN)
 
 run:
