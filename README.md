@@ -1,2 +1,2 @@
 # xor
-xor input data
+Performs a XOR operation on input data.

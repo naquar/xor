@@ -33,7 +33,7 @@ install:
 	cp ./bin/$(BIN) /usr/local/bin
 
 source:
-	@tar -c --to-stdout *.pas makefile COPYING | xz '--lzma2=dict=32MiB,lc=4,lp=0,pb=2,nice=273,mf=bt4,depth=32768' > $(NAME).tar.xz
+	@tar -c --to-stdout *.pas makefile COPYING | xz --extreme -9 > $(NAME).tar.xz
 
 clean:
 	@rm -f *.o *.res *.a *.ppu ./bin/*
