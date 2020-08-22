@@ -40,10 +40,6 @@ const
 	stdout = 1;
 	stderr = 2;
 
-const
-	sl = #10;
-	dl = sl+sl;
-
 var
 	fd0        : file of byte;
 	buf0       : ^byte;
@@ -59,15 +55,17 @@ var
 
 procedure show_help();
 begin
-	Write({$I %LOCAL_DATE%},sl);
-	Write('xor is a program to perform xor operation on files.',dl);
+	WriteLn({$I %LOCAL_DATE%});
+	WriteLn('xor is a program to perform XOR operation on files.');
+	WriteLn();
 
-	Write('Usage:',sl);
-	Write('To xor a file:',sl);
-	Write(#09,'head -c <length> /dev/urandom | ',exe_name,' /path/to/file.data',dl);
+	WriteLn('Usage:');
+	WriteLn('To XOR a file:');
+	WriteLn(#09,'head -c <length> /dev/urandom | ',exe_name,' /path/to/file.data');
+	WriteLn();
 
-	Write('Note:',sl);
-	Write(#09,'Key file must be of same length as input data.',sl);
+	WriteLn('Note:');
+	WriteLn(#09,'Key file must be of same length as input data.');
 
 	halt(0);
 end;
@@ -114,6 +112,6 @@ begin
 		FileWrite(stdout, buf0^, count_read2);
 	until 0<>0;
 
-  FreeMem(buf0);
-  FreeMem(secret_key);
+	FreeMem(buf0);
+	FreeMem(secret_key);
 end.

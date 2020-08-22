@@ -1,22 +1,16 @@
 NAME=xor
 BIN=$(NAME)
 FPC=fpc
-RELEASE_UNIT=-Mobjfpc -l -B -O3 -Sih -viewnh -Fu/usr/local/include/* -XMmain -Xs -XS -XX -CX -C3- -Cg -Ci- -Co- -CO- -Cr- -Ct-
-RELEASE=-Mobjfpc -l -B -O3 -OWAll -FW./bin/bm1NAKQStWvrNaqS.feedback -Sih -viewnh -Fu/usr/local/include/* -XMmain -Xs- -XS -XX -CX -C3- -Cg -Ci- -Co- -CO- -Cr- -Ct-
-RELEASE2=-Mobjfpc -l -B -O3 -OwAll -Fw./bin/bm1NAKQStWvrNaqS.feedback -Sih -viewnh -Fu/usr/local/include/* -XMmain -Xs -XS -XX -CX -C3- -Cg -Ci- -Co- -CO- -Cr- -Ct-
-DEBUG=-dDEBUG -Mobjfpc -l -O- -Sih -viewnh -Fu/usr/local/include/* -XMmain -Xs- -XS -XX -CX -g
+RELEASE=-Mobjfpc -l -B -O3 -Sih -viewnh -Fu/usr/local/include/* -Xs -XS -XX
+DEBUG=-dDEBUG -Mobjfpc -g -l -B -O0 -Sih -viewnh -Fu/usr/local/include/* -XS -XX
 
-LOCAL_DATE=$(shell date +'%Y/%m/%d - %H:%M:%S %Z')
-SOURCE_HASH=$(shell sha256sum $(NAME).pas | grep -o '^[0-9a-fA-F]*')
+LOCAL_DATE=$(shell date --utc +'%Y/%m/%d - %H:%M:%S %Z')
 
 export LOCAL_DATE
-export SOURCE_HASH
 
 release:
 	@rm -rf ./bin && mkdir -p ./bin
 	$(FPC) $(RELEASE) ./$(NAME).pas -o./bin/$(BIN)
-	@echo '--------------------------------------------------'
-	$(FPC) $(RELEASE2) ./$(NAME).pas -o./bin/$(BIN)
 
 debug:
 	@rm -rf ./bin && mkdir -p ./bin
