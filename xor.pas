@@ -64,10 +64,10 @@ begin
 
 	Write('Usage:',sl);
 	Write('To xor a file:',sl);
-	Write('  cat /path/to/file.data | ',exe_name,' /path/to/key.data',dl);
+	Write(#09,'head -c <length> /dev/urandom | ',exe_name,' /path/to/file.data',dl);
 
 	Write('Note:',sl);
-	Write('  Key file must be of same length as input data.',sl);
+	Write(#09,'Key file must be of same length as input data.',sl);
 
 	halt(0);
 end;
